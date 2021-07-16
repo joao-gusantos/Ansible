@@ -1,0 +1,10 @@
+---
+## Playbook para fazer backup de equipamentos Huawei
+- hosts: Huawei
+
+  tasks:
+
+   - name: Backup do equipamento
+     ce_config:
+       backup: yes
+     register: config
