@@ -1,0 +1,34 @@
+---
+## Playbook to backup de equippments Cisco
+
+- hosts: localhost
+
+  tasks:
+   - name: Collect date
+     setup:
+       filter: "ansible_date_time"
+       gather_subset: "!all"
+
+   - name: save the date
+     set_fact:
+       DTG: "{{ ansible_date_time.date }}"
+
+   - name: Create the folder with date in the name {{hostvars.localhost.DTG}}
+     file:
+      path: ./backup/{{hostvars.localhost.DTG}}
+      state: directory
+  run_once: true
+
+- hosts: Cisco 
+
+  tasks:
+
+   - name: Backup do equipments 
+     ios_command:
+       commands: show running  
+     register: config
+
+   - name: Save output to ./backup/
+     copy:
+       content: "{{config.stdout[0]}}"
+       dest: "./backup/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}-config.txt"
