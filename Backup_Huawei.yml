@@ -1,5 +1,5 @@
 ---
-## Playbook para fazer backup de equipamentos Huawei
+## Playbook to backup equipments Huawei
 - hosts: Huawei
 
   tasks:
