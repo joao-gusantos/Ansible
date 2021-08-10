@@ -1,0 +1,27 @@
+[all:vars]
+ansible_port=22
+gather_facts=false
+ansible_connection=network_cli
+ansible_user=user
+ansible_password=password
+
+[hosts_cisco]
+SWH08 ansible_host=10.27.1.1
+RTD13 ansible_host=10.27.4.2
+
+[hosts_cisco:vars]
+ansible_port=22
+ansible_connection=network_cli
+ansible_network_os=ios
+ansible_become_method=enable
+ansible_become_password=cisco
+ansible_become=yes
+
+[hosts_huawei]
+SWH01 ansible_host=10.27.6.1
+SWH04 ansible_host=10.27.6.10
+
+[hosts_huawei:vars]
+ansible_network_os=ce
+ansible_port=22
+ansible_connection=network_cli
