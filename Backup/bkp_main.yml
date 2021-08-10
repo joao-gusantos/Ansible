@@ -1,0 +1,36 @@
+---
+- name: Backup Hosts Cisco
+  hosts: hosts_cisco
+  gather_facts: no
+  ignore_errors: yes
+
+  tasks:
+    - name: Backup Host config - Cisco
+      ios_config:
+        backup: yes
+        backup_options:
+          dir_path: "/etc/ansible/backups/{{ inventory_hostname }}-{{ ansible_host }}"
+
+- name: Backup Hosts Huawei
+  hosts: hosts_huawei
+  gather_facts: no
+  ignore_errors: yes
+
+  tasks:
+    - name: Backup Host config - Huawei
+      ce_config:
+        backup: yes
+        backup_options:
+          dir_path: "/etc/ansible/backups/{{ inventory_hostname }}-{{ ansible_host }}"
+
+- name: Backup hosts Juniper
+  hosts: hosts_juniper
+  gather_facts: no
+  ignore_errors: yes
+
+  tasks:
+    - name: Backup host config - Juniper
+      junos_config:
+        backup: yes
+        backup_options:
+          dir_path: "/etc/ansible/backups/{{ inventory_hostname }}-{{ ansible_host }}"
