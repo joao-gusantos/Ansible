@@ -1,0 +1,15 @@
+---
+  - name: Configure ACL on router Cisco
+    hosts: hosts_cisco
+    tasks:
+      - name: Config ACL
+        ios_config:
+          before:
+            - no ip access-list extended IN_on_Interface
+          parents:
+            - ip access-list extended IN_on_Interface
+          lines:
+            - permit tcp 10.100.0.0 0.0.0.255 any eq 22
+            - permit tcp 10.10.10.0 0.0.0.255 any eq www
+            - permit any 192.168.10.0 0.0.0.255 any
+            - permit icmp any any
