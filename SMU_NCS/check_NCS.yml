@@ -1,0 +1,31 @@
+---
+- name: Checagem dos pacotes
+  hosts: hosts_cisco
+  gather_facts: no
+  
+  tasks:
+  - iosxr_command:
+      commands: "admin sh install ac summ | inc Pack "
+    register: pacote
+  - debug: var=pacote.stdout_lines
+ 
+- name: Checagem das rotas
+  hosts: hosts_cisco
+  gather_facts: no
+  
+  tasks:
+  - iosxr_command:
+      commands: "show mrib route summ"
+    register: rota_mib
+  - debug: var=rota_mib.stdout_lines
+
+- name: Checagem dos .tar
+  hosts: hosts_cisco
+  gather_facts: no
+  
+  tasks:
+  - iosxr_command:
+      commands: "dir harddisk: | inc 6.6.3.C | exc 685"
+    register: tar
+  - debug: var=tar.stdout_lines 
+  
