@@ -1,0 +1,11 @@
+---
+- name: Iniciar Install
+  hosts: hosts_cisco
+  gather_facts: no
+  ignore_errors: yes
+  
+  tasks:
+  - iosxr_command:
+      commands: "install add source harddisk:/ ncs5500-sysadmin-6.6.3.CSCvx16766.tar ncs5500-6.6.3.CSCvr66031.tar "
+    register: install 
+  
