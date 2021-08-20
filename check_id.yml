@@ -1,0 +1,11 @@
+---
+- name: Checagem do ID
+  hosts: hosts_cisco
+  gather_facts: no
+  ignore_errors: yes
+  
+  tasks:
+  - iosxr_command:
+      commands: "show install log | inc Aug | inc End "
+    register: id
+  - debug: var=id.stdout_lines
