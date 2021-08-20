@@ -7,5 +7,5 @@
   tasks:
   - iosxr_command:
       commands: "install add source harddisk:/ ncs5500-sysadmin-6.6.3.CSCvx16766.tar ncs5500-6.6.3.CSCvr66031.tar "
-    register: install 
+    register: install
   
