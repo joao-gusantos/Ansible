@@ -1,5 +1,5 @@
 ---
-- name: Checagem do ID
+- name: Check of ID
   hosts: hosts_cisco
   gather_facts: no
   ignore_errors: yes
